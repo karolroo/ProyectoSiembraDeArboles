@@ -1,6 +1,7 @@
 #1. Importar el paquete o paquetes con los que voy
 import pandas as pd
 from helpers.creacionTabla import crearTabla
+from helpers.creacionGrafica import generarGrafica
 
 def analizarRegistroSiembras():
     #2. Sin importar la fuente (sql, xls, JSON, csv...)
@@ -8,7 +9,7 @@ def analizarRegistroSiembras():
 
     #3. Aplico filtros para limpiar o seleccionar datos
     #Filtro arboles de medellin con cantidantes superiores a 200
-    filtroArbolesMedellin=tabla.query(" (Ciudad== 'Medellín') and (Arboles > 200 ) ") 
+    filtroArbolesMedellin=tabla.query(" (Ciudad == 'Medellín') and (Arboles > 200 ) ") 
     crearTabla(filtroArbolesMedellin,"filtroArbolesMedellin")
 
     #Filtro Arboles de Santa Fe de Antioquia y veredas Tonusco Arriba y paso real
@@ -27,11 +28,8 @@ def analizarRegistroSiembras():
     #Filtro de Siembras en Yondó
     filtroSiembrasYondo= tabla.query("Ciudad == 'Yondó' ")
     crearTabla(filtroSiembrasYondo, 'filtroSiembrasYondo')
-    print(filtroSiembrasYondo)
-    
-
-
-    
+    #print(filtroSiembrasYondo)
+ 
 
     #4. Graficando los dataframes
-    #generarGrafica(filtroPanes)
+    generarGrafica(filtroArbolesMedellin)
